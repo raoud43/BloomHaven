@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>complete responsive flower website design tutorial</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+
+<!-- header section starts  -->
+
+<header>
+    <section class="flex">
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+        <label for="toggler" class="fas fa-times" id="close"></label>
+
+        <a href="#" class="logo">BloomHaven<span>.</span></a>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#about">about</a>
+            <a href="#products">products</a>
+            <a href="#review">review</a>
+            <a href="#contact">contact</a>
+        </nav>
+
+        <div class="icons">
+            <div class="wishlist-container">
+                <a href="#" class="fas fa-heart" id="wishlist-btn">
+                    <span class="wishlist-counter">0</span>
+                </a>
+            </div>
+            <div class="cart-container">
+                <a href="#" class="fas fa-shopping-cart" id="cart-btn">
+                    <span class="cart-counter">0</span>
+                </a>
+            </div>
+            <a href="profile.html" class="fas fa-user"></a>
+        </div>
+    </section>
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<div class="home-container">
+
+    <section class="home" id="home">
+
+        <div class="content">
+            <h3>fresh flowers</h3>
+            <span> natural & beautiful flowers </span>
+            <p>Welcome to BloomHaven, your destination for fresh and vibrant flowers. Our handpicked blooms bring beauty and joy to every occasion. Explore our collection and find the perfect flowers for any moment!</p>
+            <a href="#" class="btn">shop now</a>
+        </div>
+        
+    </section>
+
+</div>
+
+<!-- home section ends -->
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+    <h1 class="heading"> <span> about </span> us </h1>
+
+    <div class="row">
+
+        <div class="video-container">
+            <video src="images/about-vid.mp4" loop autoplay muted></video>
+            <h3>best flower sellers</h3>
+        </div>
+
+        <div class="content">
+            <h3>why choose us?</h3>
+            <p>
+                At BLOOM HAVEN, we believe in creating a shopping experience that is as delightful as the products we offer. Here's why our customers love us:
+                <br>
+                <p>🌸✨ Premium Quality: We handpick the finest products to ensure elegance, durability, and satisfaction.</p>
+                <p>🛍️ Wide Selection: Our exclusive collections feature a variety of stylish and unique items for every occasion.</p>
+                <p>📦🚚 Fast & Reliable Delivery: Your orders are delivered swiftly and securely to your doorstep.</p>
+                <p>  💖 Exceptional Customer Service: Our team is always ready to assist you with any inquiries or concerns.</p>
+                <p> 🎁 Exclusive Collections: Discover unique and stylish items you won't find anywhere else.</p>
+                <p>Shop with confidence at BLOOM HAVEN where elegance meets excellence! 🌸✨</p>
+                
+            </p>
+            <a href="#" class="btn">learn more</a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- icons section starts  -->
+
+<div class="icons-container">
+
+    <section class="box-container">
+
+        <div class="box">
+            <img src="images/icon-1.png" alt="">
+            <div class="info">
+                <h3>free delivery</h3>
+                <span>on all orders</span>
+            </div>
+        </div>
+    
+        <div class="box">
+            <img src="images/icon-2.png" alt="">
+            <div class="info">
+                <h3>10 days returns</h3>
+                <span>moneyback guarantee</span>
+            </div>
+        </div>
+    
+        <div class="box">
+            <img src="images/icon-3.png" alt="">
+            <div class="info">
+                <h3>offer & gifts</h3>
+                <span>on all orders</span>
+            </div>
+        </div>
+    
+        <div class="box">
+            <img src="images/icon-4.png" alt="">
+            <div class="info">
+                <h3>secure paymens</h3>
+                <span>protected by paypal</span>
+            </div>
+        </div>
+       
+    </section>
+
+</div>
+
+<!-- icons section ends -->
+
+<!-- prodcuts section starts  -->
+
+<section class="products" id="products">
+    <h1 class="heading"> latest <span>products</span> </h1>
+
+    <div class="container">
+        <!-- Search and Filters -->
+        <div class="search-container">
+            <div class="search-box-container">
+                <input type="text" class="search-box" id="searchInput" placeholder="Search for flowers...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="filter-container">
+                <select class="form-select" id="sort-products">
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name: A to Z</option>
+                </select>
+                <select class="form-select" id="price-range">
+                    <option value="all">All Prices</option>
+                    <option value="0-50">Under 50 SAR</option>
+                    <option value="50-100">50 - 100 SAR</option>
+                    <option value="100+">Over 100 SAR</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="filter-buttons mb-4">
+            <button class="filter-btn active" data-filter="all">All Flowers</button>
+            <button class="filter-btn" data-filter="bouquets">Bouquets</button>
+            <button class="filter-btn" data-filter="roses">Roses</button>
+            <button class="filter-btn" data-filter="seasonal">Seasonal</button>
+            <button class="filter-btn" data-filter="gifts">Gifts</button>
+        </div>
+
+        <!-- No Results Message -->
+        <div id="no-results" class="text-center mb-4" style="display: none;">
+            <h3>No products found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+        </div>
+
+        <div class="row box-container">
+            <div class="box" data-product-id="1">
+                <span class="discount">-10%</span>
+                <div class="image">
+                    <img src="images/img-1.jpg" alt="">
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart wishlist-toggle"></a>
+                        <a href="#" class="cart-btn">add to cart</a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Rose Bouquet</h3>
+                    <div class="price">45.99 SAR <span>55.99 SAR</span></div>
+                </div>
+            </div>
+
+            <div class="box" data-product-id="2">
+                <span class="discount">-15%</span>
+                <div class="image">
+                    <img src="images/img-2.jpg" alt="">
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart wishlist-toggle"></a>
+                        <a href="#" class="cart-btn">add to cart</a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Spring Mix</h3>
+                    <div class="price">89.99 SAR <span>105.99 SAR</span></div>
+                </div>
+            </div>
+
+            <div class="box" data-product-id="3">
+                <span class="discount">-5%</span>
+                <div class="image">
+                    <img src="images/img-3.jpg" alt="">
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart wishlist-toggle"></a>
+                        <a href="#" class="cart-btn">add to cart</a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Red Roses</h3>
+                    <div class="price">35.99 SAR <span>39.99 SAR</span></div>
+                </div>
+            </div>
+
+            <div class="box" data-product-id="4">
+                <span class="discount">-20%</span>
+                <div class="image">
+                    <img src="images/img-4.jpg" alt="">
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart wishlist-toggle"></a>
+                        <a href="#" class="cart-btn">add to cart</a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Gift Box Special</h3>
+                    <div class="price">120.99 SAR <span>149.99 SAR</span></div>
+                </div>
+            </div>
+
+            <div class="box" data-product-id="5">
+                <span class="discount">-17%</span>
+                <div class="image">
+                    <img src="images/img-5.jpg" alt="">
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart wishlist-toggle"></a>
+                        <a href="#" class="cart-btn">add to cart</a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Mixed Bouquet</h3>
+                    <div class="price">75.99 SAR <span>89.99 SAR</span></div>
+                </div>
+            </div>
+
+            <div class="box" data-product-id="6">
+                <span class="discount">-3%</span>
+                <div class="image">
+                    <img src="images/img-6.jpg" alt="">
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart wishlist-toggle"></a>
+                        <a href="#" class="cart-btn">add to cart</a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Summer Collection</h3>
+                    <div class="price">65.99 SAR <span>69.99 SAR</span></div>
+                </div>
+            </div>
+
+            <div class="box" data-product-id="7">
+                <span class="discount">-18%</span>
+                <div class="image">
+                    <img src="images/img-7.jpg" alt="">
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart wishlist-toggle"></a>
+                        <a href="#" class="cart-btn">add to cart</a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Rose Gift Box</h3>
+                    <div class="price">155.99 SAR <span>189.99 SAR</span></div>
+                </div>
+            </div>
+
+            <div class="box" data-product-id="8">
+                <span class="discount">-10%</span>
+                <div class="image">
+                    <img src="images/img-8.jpg" alt="">
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart wishlist-toggle"></a>
+                        <a href="#" class="cart-btn">add to cart</a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Spring Bouquet</h3>
+                    <div class="price">85.99 SAR <span>95.99 SAR</span></div>
+                </div>
+            </div>
+
+            <div class="box" data-product-id="9">
+                <span class="discount">-5%</span>
+                <div class="image">
+                    <img src="images/img-9.jpg" alt="">
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart wishlist-toggle"></a>
+                        <a href="#" class="cart-btn">add to cart</a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Special Gift Set</h3>
+                    <div class="price">135.99 SAR <span>142.99 SAR</span></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- prodcuts section ends -->
+
+<!-- review section starts  -->
+
+<section class="review" id="review">
+
+<h1 class="heading"> customer's <span>review</span> </h1>
+
+<div class="box-container">
+
+    <div class="box">
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+        <p>Amazing experience! The flowers were fresh and beautiful. The order was delivered quickly, and the process was smooth and easy. I highly recommend shopping here!</p>
+        <div class="user">
+            <img src="images/pic-1.png" alt="">
+            <div class="user-info">
+                <h3>ali</h3>
+                <span>happy customer</span>
+            </div>
+        <span class="fas fa-quote-right"></span>
+    </div>
+    </div>
+
+    <div class="box">
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+        <p>Great store! The flowers were stunning, and the bouquet I ordered was incredible. Customer service was professional and quick to respond to my inquiries. I will definitely shop here again</p>
+        <div class="user">
+            <img src="images/pic-2.png" alt="">
+            <div class="user-info">
+                <h3> sara </h3>
+                <span>happy customer</span>
+            </div>
+        </div>
+        <span class="fas fa-quote-right"></span>
+    </div>
+
+    <div class="box">
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+        <p>The best online shopping experience. The flowers were fresh, and the quality was excellent. My order arrived on time, and the prices were very reasonable. Thank you, BloomHaven</p>
+        <div class="user">
+            <img src="images/pic-3.png" alt="">
+            <div class="user-info">
+                <h3> fahad</h3>
+                <span>happy customer</span>
+            </div>
+        </div>
+        <span class="fas fa-quote-right"></span>
+    </div>
+
+</div>
+    
+</section>
+
+<!-- review section ends -->
+
+<!-- contact section starts  -->
+
+<section class="contact" id="contact">
+
+    <h1 class="heading"> <span> contact </span> us </h1>
+
+    <div class="row">
+
+        <form action="">
+            <input type="text" placeholder="name" class="box">
+            <input type="email" placeholder="email" class="box">
+            <input type="number" placeholder="number" class="box">
+            <textarea name="" class="box" placeholder="message" id="" cols="30" rows="10"></textarea>
+            <input type="submit" value="send message" class="btn">
+        </form>
+
+        <div class="image">
+            <img src="images/contact-img.svg" alt="">
+        </div>
+
+    </div>
+
+</section>
+
+<!-- contact section ends -->
+
+
+<div class="owner-buttons">
+    <button class="owner-btn">
+      <i class="fas fa-box-open"></i>
+      View & Manage Orders As Owner
+    </button>
+    <button class="owner-btn">
+      <i class="fas fa-chart-bar"></i>
+      View Collected Marketing Data
+    </button>
+  </div>
+  
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#">home</a>
+            <a href="#">about</a>
+            <a href="#">products</a>
+            <a href="#">review</a>
+            <a href="#">contact</a>
+        </div>
+
+        <div class="box">
+            <h3>extra links</h3>
+            <a href="#">my account</a>
+            <a href="#">my order</a>
+            <a href="#">my favorite</a>
+        </div>
+
+        <div class="box">
+            <h3>locations</h3>
+            <a href="#">Qassim</a>
+            <a href="#">Jeddah</a>
+            <a href="#">Mecca</a>
+            <a href="#">Dammam</a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#">+96606668198</a>
+            <a href="#">tesgb435@gmail.com</a>
+            <a href="#">Saudi Arabia, Riyadh </a>
+            <img src="images/payment.png" alt="">
+        </div>
+
+    </div>
+
+    <div class="credit"> created by <span> Team BH Designer </span> | all rights reserved </div>
+
+</section>
+
+<!-- footer section ends -->
+
+<!-- Cart Modal -->
+<div class="cart-modal">
+    <div class="cart-content">
+        <h2>Your Cart</h2>
+        <i class="fas fa-times close-cart"></i>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="empty-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <p>Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="discount-amount" style="display: none;">
+                <!-- Discount amount will be displayed here -->
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="checkout-btn">
+                <i class="fas fa-shopping-bag"></i> Checkout
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Wishlist Modal -->
+<div class="wishlist-modal">
+    <div class="wishlist-content">
+        <span class="close-wishlist">&times;</span>
+        <h2>Your Wishlist</h2>
+        <div class="wishlist-items"></div>
+        <div class="empty-wishlist">
+            <i class="fas fa-heart"></i>
+            <p>Your wishlist is empty</p>
+        </div>
+    </div>
+</div>
+
+<script>
+console.log(JSON.parse(localStorage.getItem('cart')));
+console.log(JSON.parse(localStorage.getItem('products')));
+</script>
+</body>
+</html>
