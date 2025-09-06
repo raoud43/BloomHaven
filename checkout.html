@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - BloomHaven</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js" defer></script>
+    <style>
+      /* Restore original styles */
+      .anonymous-gift-option {
+        background: linear-gradient(135deg, #fff5f5 0%, #fff0f6 100%);
+        border: 1px solid #ffb6c1;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .anonymous-gift-option:hover {
+        background: linear-gradient(135deg, #ffeef2 0%, #ffebf3 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
+      }
+
+      input[type="checkbox"]:checked + label .anonymous-gift-option {
+        background: linear-gradient(135deg, #fff0f5 0%, #ffeef2 100%);
+        border-color: #ff69b4;
+      }
+
+      .gift-icon-container {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .gift-icon-container i.fa-gift {
+        font-size: 24px;
+        color: #ff69b4;
+        z-index: 1;
+      }
+
+      .gift-decoration {
+        position: absolute;
+        font-size: 12px;
+        color: #98fb98;
+      }
+
+      .gift-decoration:nth-child(2) {
+        top: -5px;
+        left: 5px;
+        transform: rotate(-30deg);
+      }
+
+      .gift-decoration:nth-child(3) {
+        bottom: -5px;
+        right: 5px;
+        transform: rotate(30deg);
+      }
+
+      .anonymous-gift-option h5 {
+        color: #ff69b4;
+        font-weight: 600;
+      }
+
+      /* Enhanced Gift Button Animation */
+      .form-check-input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+
+      .form-check-label {
+        cursor: pointer;
+      }
+
+      /* Gift button animation when checked */
+      input[type="checkbox"]:checked + label .anonymous-gift-option {
+        animation: giftButtonPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      @keyframes giftButtonPop {
+        0% {
+          transform: scale(0.95);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
+        }
+      }
+
+      /* Add sparkle effect to gift icon when checked */
+      input[type="checkbox"]:checked + label .gift-icon-container i.fa-gift {
+        animation: giftIconSparkle 1.5s ease-in-out infinite;
+      }
+
+      @keyframes giftIconSparkle {
+        0% {
+          transform: scale(1) rotate(0deg);
+        }
+        25% {
+          transform: scale(1.1) rotate(-5deg);
+        }
+        50% {
+          transform: scale(1) rotate(0deg);
+        }
+        75% {
+          transform: scale(1.1) rotate(5deg);
+        }
+        100% {
+          transform: scale(1) rotate(0deg);
+        }
+      }
+
+      /* Add floating leaves animation when checked */
+      input[type="checkbox"]:checked + label .gift-decoration {
+        animation: leafFloat 2s ease-in-out infinite;
+      }
+
+      @keyframes leafFloat {
+        0% {
+          transform: rotate(-30deg) translateY(0);
+        }
+        50% {
+          transform: rotate(-30deg) translateY(-5px);
+        }
+        100% {
+          transform: rotate(-30deg) translateY(0);
+        }
+      }
+
+      input[type="checkbox"]:checked + label .gift-decoration:nth-child(3) {
+        animation: leafFloat2 2s ease-in-out infinite;
+      }
+
+      @keyframes leafFloat2 {
+        0% {
+          transform: rotate(30deg) translateY(0);
+        }
+        50% {
+          transform: rotate(30deg) translateY(-5px);
+        }
+        100% {
+          transform: rotate(30deg) translateY(0);
+        }
+      }
+
+      /* Update checkmark position */
+      .form-check {
+        position: relative;
+        padding-left: 40px; /* Add space for the checkmark */
+      }
+
+      .checkmark {
+        position: absolute;
+        left: 0; /* Position on the left */
+        top: 50%;
+        transform: translateY(-50%);
+        color: #ff69b4;
+        font-size: 24px;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      input[type="checkbox"]:checked + label .checkmark {
+        opacity: 1;
+        animation: checkmarkPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      @keyframes checkmarkPop {
+        0% {
+          transform: translateY(-50%) scale(0);
+          opacity: 0;
+        }
+        50% {
+          transform: translateY(-50%) scale(1.2);
+        }
+        100% {
+          transform: translateY(-50%) scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Remove the old checkmark */
+      .anonymous-gift-option::after {
+        display: none;
+      }
+
+      /* Add sparkle particles effect */
+      .anonymous-gift-option::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at center,
+          rgba(255, 105, 180, 0.2) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      input[type="checkbox"]:checked + label .anonymous-gift-option::before {
+        opacity: 1;
+        animation: sparklePulse 2s ease-in-out infinite;
+      }
+
+      @keyframes sparklePulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.2;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.4;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.2;
+        }
+      }
+
+      /* Add floating hearts */
+      .anonymous-gift-option .floating-hearts {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .floating-heart {
+        position: absolute;
+        font-size: 12px;
+        color: #ff69b4;
+        opacity: 0;
+        animation: floatHeart 3s ease-in-out infinite;
+      }
+
+      @keyframes floatHeart {
+        0% {
+          transform: translateY(100%) scale(0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(-100%) scale(1);
+          opacity: 0;
+        }
+      }
+
+      /* Add ribbon effect */
+      .anonymous-gift-option .ribbon {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 30px;
+        height: 30px;
+        background: #ff69b4;
+        transform: rotate(45deg);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      input[type="checkbox"]:checked + label .anonymous-gift-option .ribbon {
+        opacity: 1;
+        animation: ribbonPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      @keyframes ribbonPop {
+        0% {
+          transform: rotate(45deg) scale(0);
+        }
+        50% {
+          transform: rotate(45deg) scale(1.2);
+        }
+        100% {
+          transform: rotate(45deg) scale(1);
+        }
+      }
+
+      /* Enhanced Delivery Options Design */
+      .delivery-options .form-check {
+        margin-bottom: 15px;
+      }
+
+      .delivery-options .form-check-input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+
+      .delivery-options .form-check-label {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-radius: 10px;
+        background: #fff;
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .delivery-options
+        .form-check-input[type="radio"]:checked
+        + .form-check-label {
+        border-color: #ff69b4;
+        background: linear-gradient(135deg, #fff5f5 0%, #fff0f6 100%);
+        box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
+      }
+
+      .delivery-options .form-check-label i {
+        font-size: 24px;
+        margin-right: 15px;
+        color: #ff69b4;
+        transition: all 0.3s ease;
+      }
+
+      .delivery-options
+        .form-check-input[type="radio"]:checked
+        + .form-check-label
+        i {
+        transform: scale(1.1);
+      }
+
+      .delivery-options .form-check-label:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Enhanced Payment Methods Design */
+      .payment-methods .form-check {
+        margin-bottom: 15px;
+      }
+
+      .payment-methods .form-check-input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+
+      .payment-methods .form-check-label {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-radius: 10px;
+        background: #fff;
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .payment-methods
+        .form-check-input[type="radio"]:checked
+        + .form-check-label {
+        border-color: #ff69b4;
+        background: linear-gradient(135deg, #fff5f5 0%, #fff0f6 100%);
+        box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
+      }
+
+      .payment-methods .form-check-label i {
+        font-size: 24px;
+        margin-right: 15px;
+        color: #ff69b4;
+        transition: all 0.3s ease;
+      }
+
+      .payment-methods
+        .form-check-input[type="radio"]:checked
+        + .form-check-label
+        i {
+        transform: scale(1.1);
+      }
+
+      .payment-methods .form-check-label:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Payment Details Animation */
+      .payment-details {
+        transition: all 0.3s ease;
+      }
+
+      .payment-details.show {
+        animation: slideDown 0.3s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+    <script>
+      // Function to calculate order summary
+      function calculateOrderSummary() {
+        const subtotal =
+          parseFloat(document.querySelector(".subtotal").textContent) || 0;
+        const deliveryFee =
+          parseFloat(document.querySelector(".delivery-fee").textContent) || 0;
+        const tax = (subtotal + deliveryFee) * 0.15;
+
+        document.querySelector(".tax").textContent = tax.toFixed(2) + " SAR";
+        document.querySelector(".total").textContent =
+          (subtotal + deliveryFee + tax).toFixed(2) + " SAR";
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize the order summary when the page loads
+        calculateOrderSummary();
+
+        // Add event listeners for payment method selection
+        document
+          .querySelectorAll('input[name="paymentMethod"]')
+          .forEach((radio) => {
+            radio.addEventListener("change", function () {
+              const paymentDetails = document.querySelector(".payment-details");
+              if (this.id === "creditCard") {
+                paymentDetails.style.display = "block";
+                paymentDetails.classList.add("show");
+              } else {
+                paymentDetails.style.display = "none";
+                paymentDetails.classList.remove("show");
+              }
+            });
+          });
+
+        // Add event listeners for delivery method selection
+        document
+          .querySelectorAll('input[name="deliveryMethod"]')
+          .forEach((radio) => {
+            radio.addEventListener("change", function () {
+              const branchDetails = document.getElementById(
+                "branchPickupDetails"
+              );
+              const deliveryDetails = document.getElementById(
+                "deliveryCompanyDetails"
+              );
+              const deliveryFee = document.querySelector(".delivery-fee");
+
+              if (this.id === "branchPickup") {
+                branchDetails.style.display = "block";
+                deliveryDetails.style.display = "none";
+                deliveryFee.textContent = "0.00 SAR";
+                calculateOrderSummary();
+              } else if (this.id === "deliveryCompany") {
+                branchDetails.style.display = "none";
+                deliveryDetails.style.display = "block";
+                deliveryFee.textContent = "20.00 SAR";
+                calculateOrderSummary();
+              }
+            });
+          });
+
+        // Set initial delivery fee based on default selection
+        const defaultDeliveryMethod = document.querySelector(
+          'input[name="deliveryMethod"]:checked'
+        );
+        if (
+          defaultDeliveryMethod &&
+          defaultDeliveryMethod.id === "branchPickup"
+        ) {
+          document.querySelector(".delivery-fee").textContent = "0.00 SAR";
+          calculateOrderSummary();
+        }
+
+        // Handle anonymous gift checkbox and modal
+        const anonymousGiftCheckbox = document.getElementById("anonymousGift");
+        const giftMessageModal = new bootstrap.Modal(
+          document.getElementById("giftMessageModal")
+        );
+
+        anonymousGiftCheckbox.addEventListener("change", function () {
+          if (this.checked) {
+            giftMessageModal.show();
+          }
+        });
+
+        // Save gift message
+        document
+          .getElementById("saveGiftMessage")
+          .addEventListener("click", function () {
+            const message = document.getElementById("giftMessage").value;
+            // You can store the message or do something with it here
+            giftMessageModal.hide();
+          });
+
+        // Reset message when modal is closed
+        document
+          .getElementById("giftMessageModal")
+          .addEventListener("hidden.bs.modal", function () {
+            document.getElementById("giftMessage").value = "";
+          });
+
+        // Add floating hearts
+        const createFloatingHearts = () => {
+          const giftOption = document.querySelector(".anonymous-gift-option");
+          const heartsContainer = document.createElement("div");
+          heartsContainer.className = "floating-hearts";
+          giftOption.appendChild(heartsContainer);
+
+          for (let i = 0; i < 5; i++) {
+            const heart = document.createElement("div");
+            heart.className = "floating-heart";
+            heart.innerHTML = "❤";
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.animationDelay = `${i * 0.5}s`;
+            heartsContainer.appendChild(heart);
+          }
+        };
+
+        // Add ribbon
+        const addRibbon = () => {
+          const giftOption = document.querySelector(".anonymous-gift-option");
+          const ribbon = document.createElement("div");
+          ribbon.className = "ribbon";
+          giftOption.appendChild(ribbon);
+        };
+
+        createFloatingHearts();
+        addRibbon();
+
+        // Add checkmark element
+        const addCheckmark = () => {
+          const giftOption = document.querySelector(".anonymous-gift-option");
+          const checkmark = document.createElement("div");
+          checkmark.className = "checkmark";
+          checkmark.innerHTML = "✓";
+          giftOption.parentElement.appendChild(checkmark);
+        };
+
+        addCheckmark();
+      });
+    </script>
+  </head>
+  <body>
+    <!-- header section starts  -->
+    <header>
+      <section class="flex">
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <input type="checkbox" name="" id="toggler" />
+        <label for="toggler" class="fas fa-bars"></label>
+        <label for="toggler" class="fas fa-times" id="close"></label>
+
+        <a href="index.html" class="logo">BloomHaven<span>.</span></a>
+
+        <nav class="navbar">
+          <a href="index.html#home">home</a>
+          <a href="index.html#about">about</a>
+          <a href="index.html#products">products</a>
+          <a href="index.html#review">review</a>
+          <a href="index.html#contact">contact</a>
+        </nav>
+      </section>
+    </header>
+    <!-- header section ends -->
+
+    <section class="checkout py-5 mt-5">
+      <div class="container">
+        <div class="text-center mb-4">
+          <h1 class="heading">Checkout</h1>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card shadow mb-4">
+              <div class="card-body">
+                <h3 class="mb-4">Shipping Information</h3>
+                <form class="checkout-form">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="name"
+                          placeholder="Enter your full name"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="email" class="form-label"
+                          >Email Address</label
+                        >
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="email"
+                          placeholder="Enter your email"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="phone" class="form-label"
+                          >Phone Number</label
+                        >
+                        <input
+                          type="tel"
+                          class="form-control"
+                          id="phone"
+                          placeholder="Enter your phone number"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="city" class="form-label">City</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="city"
+                          placeholder="Enter your city"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="address" class="form-label">Address</label>
+                        <textarea
+                          class="form-control"
+                          id="address"
+                          rows="3"
+                          placeholder="Enter your address"
+                          required
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="orderNotes" class="form-label"
+                          >Order Notes</label
+                        >
+                        <textarea
+                          class="form-control"
+                          id="orderNotes"
+                          rows="4"
+                          placeholder="Write any special notes for your order (optional)"
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check mb-3">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="anonymousGift"
+                        />
+                        <label class="form-check-label" for="anonymousGift">
+                          <div class="anonymous-gift-option p-3 rounded">
+                            <div class="d-flex align-items-center">
+                              <div class="gift-icon-container">
+                                <i class="fas fa-gift"></i>
+                                <i class="fas fa-leaf gift-decoration"></i>
+                                <i class="fas fa-leaf gift-decoration"></i>
+                              </div>
+                              <div class="ml-3">
+                                <h5 class="mb-1">Anonymous Gift Delivery</h5>
+                                <small class="text-muted"
+                                  >(The recipient won't see the sender's
+                                  information)</small
+                                >
+                              </div>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="postal" class="form-label"
+                          >Postal Code</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="postal"
+                          placeholder="Enter postal code"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+              <div class="card-body">
+                <h3 class="mb-4">Delivery Options</h3>
+                <div class="delivery-options">
+                  <div class="form-check mb-3">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="deliveryMethod"
+                      id="branchPickup"
+                      checked
+                    />
+                    <label class="form-check-label" for="branchPickup">
+                      <i class="fas fa-store"></i> Branch Pickup
+                    </label>
+                    <div class="delivery-details mt-3" id="branchPickupDetails">
+                      <div class="form-group">
+                        <label for="branchSelect" class="form-label"
+                          >Select Branch</label
+                        >
+                        <select class="form-control" id="branchSelect">
+                          <option value="">Choose a branch</option>
+                          <option value="riyadh">Riyadh Branch</option>
+                          <option value="jeddah">Jeddah Branch</option>
+                          <option value="dammam">Dammam Branch</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-check mb-3">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="deliveryMethod"
+                      id="deliveryCompany"
+                    />
+                    <label class="form-check-label" for="deliveryCompany">
+                      <i class="fas fa-truck"></i> Delivery Company
+                    </label>
+                    <div
+                      class="delivery-details mt-3"
+                      id="deliveryCompanyDetails"
+                      style="display: none"
+                    >
+                      <div class="form-group">
+                        <label for="deliverySelect" class="form-label"
+                          >Select Delivery Company</label
+                        >
+                        <select class="form-control" id="deliverySelect">
+                          <option value="">Choose a delivery company</option>
+                          <option value="aramex">Aramex</option>
+                          <option value="smsa">SMSA</option>
+                          <option value="naqel">Naqel</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+              <div class="card-body">
+                <h3 class="mb-4">Payment Methods</h3>
+                <div class="payment-methods">
+                  <div class="form-check mb-3">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="paymentMethod"
+                      id="creditCard"
+                      checked
+                    />
+                    <label class="form-check-label" for="creditCard">
+                      <i class="fas fa-credit-card"></i> Credit Card
+                    </label>
+                    <div class="payment-details mt-3">
+                      <div class="form-group mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Card Number"
+                        />
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group mb-3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="MM/YY"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group mb-3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="CVV"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-check mb-3">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="paymentMethod"
+                      id="applePay"
+                    />
+                    <label class="form-check-label" for="applePay">
+                      <i class="fab fa-apple-pay"></i> Apple Pay
+                    </label>
+                  </div>
+                  <div class="form-check mb-3">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="paymentMethod"
+                      id="cod"
+                    />
+                    <label class="form-check-label" for="cod">
+                      <i class="fas fa-money-bill-wave"></i> Cash on Delivery
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card shadow-sm mb-4">
+              <div class="card-body">
+                <h3 class="mb-4">Order Summary</h3>
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Subtotal:</span>
+                  <span class="subtotal">0.00 SAR</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Delivery Fee:</span>
+                  <span class="delivery-fee">20.00 SAR</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span>VAT (15%):</span>
+                  <span class="tax">0.00 SAR</span>
+                </div>
+                <hr />
+                <div class="d-flex justify-content-between mb-4">
+                  <strong>Total:</strong>
+                  <strong class="total">0.00 SAR</strong>
+                </div>
+                <button onclick="processOrder()" class="btn btn-primary w-100">
+                  Confirm Order
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gift Message Modal -->
+    <div
+      class="modal fade"
+      id="giftMessageModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="giftMessageModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="giftMessageModalLabel">
+              <i class="fas fa-gift text-pink mr-2"></i>
+              Add a Gift Message
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="giftMessage">Your Message (Optional)</label>
+              <textarea
+                class="form-control"
+                id="giftMessage"
+                rows="4"
+                placeholder="Write a special message for the recipient..."
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="saveGiftMessage">
+              Save Message
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

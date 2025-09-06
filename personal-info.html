@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Information - BloomHaven</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js" defer></script>
+  </head>
+  <body>
+    <!-- header section starts  -->
+    <header>
+      <section class="flex">
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <input type="checkbox" name="" id="toggler" />
+        <label for="toggler" class="fas fa-bars"></label>
+        <label for="toggler" class="fas fa-times" id="close"></label>
+
+        <a href="index.html" class="logo">BloomHaven<span>.</span></a>
+
+        <nav class="navbar">
+          <a href="index.html#home">home</a>
+          <a href="index.html#about">about</a>
+          <a href="index.html#products">products</a>
+          <a href="index.html#review">review</a>
+          <a href="index.html#contact">contact</a>
+        </nav>
+      </section>
+    </header>
+    <!-- header section ends -->
+
+    <section class="personal-info py-5" style="margin-top: 80px">
+      <div class="container">
+        <h1 class="text-center mb-5 display-4 font-weight-bold text-dark">
+          Personal Information
+        </h1>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card border-0 shadow-lg rounded-lg">
+              <div class="card-body p-4">
+                <form class="info-form">
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-group">
+                        <label
+                          for="name"
+                          class="form-label h5 font-weight-bold text-dark"
+                          >Full Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control form-control-lg rounded-pill"
+                          id="name"
+                          placeholder="Enter your full name"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-group">
+                        <label
+                          for="phone"
+                          class="form-label h5 font-weight-bold text-dark"
+                          >Phone Number</label
+                        >
+                        <input
+                          type="tel"
+                          class="form-control form-control-lg rounded-pill"
+                          id="phone"
+                          placeholder="Enter your phone number"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-group">
+                        <label
+                          for="email"
+                          class="form-label h5 font-weight-bold text-dark"
+                          >Email Address</label
+                        >
+                        <input
+                          type="email"
+                          class="form-control form-control-lg rounded-pill"
+                          id="email"
+                          placeholder="Enter your email"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-group">
+                        <label
+                          for="city"
+                          class="form-label h5 font-weight-bold text-dark"
+                          >City</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control form-control-lg rounded-pill"
+                          id="city"
+                          placeholder="Enter your city"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                      <div class="form-group">
+                        <label
+                          for="address"
+                          class="form-label h5 font-weight-bold text-dark"
+                          >Address</label
+                        >
+                        <textarea
+                          class="form-control form-control-lg rounded-lg"
+                          id="address"
+                          rows="3"
+                          placeholder="Enter your address"
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-group">
+                        <label
+                          for="postal"
+                          class="form-label h5 font-weight-bold text-dark"
+                          >Postal Code</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control form-control-lg rounded-pill"
+                          id="postal"
+                          placeholder="Enter postal code"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                      <div class="row">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                          <button
+                            type="submit"
+                            class="btn btn-primary w-100 py-3 rounded-pill"
+                            style="font-size: 1.1rem"
+                          >
+                            <i class="fas fa-save mr-2"></i> Save Changes
+                          </button>
+                        </div>
+                        <div class="col-md-6">
+                          <button
+                            type="button"
+                            class="btn btn-danger w-100 py-3 rounded-pill"
+                            style="font-size: 1.1rem"
+                          >
+                            <i class="fas fa-times mr-2"></i> Cancel
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      $(document).ready(function() {
+        // Load saved user data when page loads
+        loadUserData();
+
+        // Handle form submission (Save button)
+        $('.info-form').on('submit', function(e) {
+          e.preventDefault();
+          saveUserData();
+        });
+
+        // Handle Cancel button
+        $('.btn-danger').on('click', function() {
+          if (confirm('Are you sure you want to cancel? All unsaved changes will be lost.')) {
+            window.location.href = 'profile.html';
+          }
+        });
+
+        // Function to load user data
+        function loadUserData() {
+          // Get saved user data from localStorage
+          const userData = JSON.parse(localStorage.getItem('userData')) || {
+            name: 'John Doe',
+            phone: '+966 50 123 4567',
+            email: 'john.doe@example.com',
+            city: 'Riyadh',
+            address: '123 Main Street, Riyadh, Saudi Arabia',
+            postal: '12345'
+          };
+
+          // Fill form fields with saved data
+          $('#name').val(userData.name);
+          $('#phone').val(userData.phone);
+          $('#email').val(userData.email);
+          $('#city').val(userData.city);
+          $('#address').val(userData.address);
+          $('#postal').val(userData.postal);
+        }
+
+        // Function to save user data
+        function saveUserData() {
+          // Get form data
+          const userData = {
+            name: $('#name').val(),
+            phone: $('#phone').val(),
+            email: $('#email').val(),
+            city: $('#city').val(),
+            address: $('#address').val(),
+            postal: $('#postal').val()
+          };
+
+          // Save to localStorage
+          localStorage.setItem('userData', JSON.stringify(userData));
+
+          // Show success message
+          showNotification('Changes saved successfully!', 'success');
+
+          // Redirect to profile page after a short delay
+          setTimeout(() => {
+            window.location.href = 'profile.html';
+          }, 1500);
+        }
+
+        // Function to show notification
+        function showNotification(message, type) {
+          const notification = $('<div>')
+            .addClass(`notification ${type}`)
+            .html(`
+              <div class="notification-content">
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                <span>${message}</span>
+              </div>
+            `)
+            .appendTo('body');
+
+          setTimeout(() => {
+            notification.addClass('show');
+          }, 100);
+
+          setTimeout(() => {
+            notification.removeClass('show');
+            setTimeout(() => {
+              notification.remove();
+            }, 300);
+          }, 3000);
+        }
+      });
+    </script>
+    <style>
+      /* Notification Styles */
+      .notification {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 4px 6px;
+        border-radius: 3px;
+        color: white;
+        font-size: 0.65rem;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        width: 70px;
+        max-width: 70px;
+        height: 70px;
+        max-height: 70px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .notification-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        justify-content: center;
+      }
+
+      .notification-content i {
+        font-size: 0.8rem;
+        flex-shrink: 0;
+      }
+
+      .notification-content span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 60px;
+        text-align: center;
+      }
+
+      .notification.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .notification.success {
+        background: linear-gradient(135deg, #e84393 0%, #d63384 100%);
+      }
+
+      .notification.error {
+        background: linear-gradient(135deg, #dc3545 0%, #f72a3e 100%);
+      }
+    </style>
+  </body>
+</html>

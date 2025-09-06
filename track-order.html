@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Track Order - BloomHaven</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+      .order-confirmation {
+        padding: 6rem 0;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        min-height: 100vh;
+        margin-top: 7rem;
+      }
+      .container {
+        padding-top: 2rem;
+      }
+      .success-icon {
+        color: #28a745;
+        font-size: 5rem;
+        margin-bottom: 2rem;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      .order-details {
+        background: #fff;
+        border-radius: 15px;
+        padding: 2rem;
+        margin-top: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+      .order-details:hover {
+        transform: translateY(-5px);
+      }
+      .order-items {
+        margin: 2rem 0;
+      }
+      .order-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
+        transition: background-color 0.3s ease;
+      }
+      .order-item:hover {
+        background-color: #f8f9fa;
+      }
+      .order-item img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-right: 1.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .tracking-steps {
+        display: flex;
+        justify-content: space-between;
+        margin: 3rem 0;
+        position: relative;
+        padding: 0 2rem;
+      }
+      .tracking-steps::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: #e9ecef;
+        z-index: 1;
+      }
+      .step {
+        background: #fff;
+        padding: 1.2rem;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+        border: 3px solid #28a745;
+        color: #28a745;
+        transition: all 0.3s ease;
+      }
+      .step.active {
+        background: #28a745;
+        color: #fff;
+        transform: scale(1.1);
+      }
+      .step:not(.active):hover {
+        transform: scale(1.05);
+        background: #f8f9fa;
+      }
+      .btn {
+        padding: 0.8rem 2rem;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header class="fixed-top">
+      <section class="flex">
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <input type="checkbox" name="" id="toggler" />
+        <label for="toggler" class="fas fa-bars"></label>
+        <label for="toggler" class="fas fa-times" id="close"></label>
+
+        <a href="#" class="logo">BloomHaven<span>.</span></a>
+
+        <nav class="navbar">
+          <a href="index.html">home</a>
+          <a href="index.html#about">about</a>
+          <a href="index.html#products">products</a>
+          <a href="index.html#review">review</a>
+          <a href="index.html#contact">contact</a>
+        </nav>
+      </section>
+    </header>
+
+    <!-- Order Tracking Section -->
+    <section class="order-confirmation">
+      <div class="container">
+        <div class="success-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h1 class="mb-4">Track Your Order</h1>
+        <p class="lead mb-4">Here's the current status of your order</p>
+
+        <div class="tracking-steps">
+          <div class="step active" title="Order Confirmed">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="step" title="Processing">
+            <i class="fas fa-box"></i>
+          </div>
+          <div class="step" title="Shipping">
+            <i class="fas fa-truck"></i>
+          </div>
+          <div class="step" title="Delivered">
+            <i class="fas fa-home"></i>
+          </div>
+        </div>
+
+        <div class="order-details">
+          <h3>Order Details</h3>
+          <div id="orderInfo" class="text-start">
+            <!-- Order info will be populated by JavaScript -->
+          </div>
+
+          <div class="order-items" id="orderItems">
+            <!-- Order items will be populated by JavaScript -->
+          </div>
+
+          <div class="text-start">
+            <p>
+              <strong>Order Status:</strong>
+              <span class="text-success">Confirmed</span>
+            </p>
+            <p><strong>Expected Delivery:</strong> Within 2-3 business days</p>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <a href="index.html" class="btn btn-primary">Return to Home</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="footer">
+      <div class="box-container">
+        <div class="box">
+          <h3>Quick Links</h3>
+          <a href="index.html">Home</a>
+          <a href="products.html">Products</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="box">
+          <h3>Additional Links</h3>
+          <a href="cart.html">Shopping Cart</a>
+          <a href="wishlist.html">Wishlist</a>
+          <a href="profile.html">My Account</a>
+        </div>
+        <div class="box">
+          <h3>Contact Info</h3>
+          <a href="#">+966 50 123 4567</a>
+          <a href="#">info@bloomhaven.com</a>
+          <a href="#">Riyadh, Saudi Arabia</a>
+        </div>
+        <div class="box">
+          <h3>Follow Us</h3>
+          <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+          <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+          <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+          <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
+      </div>
+      <div class="credit">
+        All Rights Reserved &copy; 2024 <span>BloomHaven</span>
+      </div>
+    </section>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get the latest order from localStorage
+        const orders = JSON.parse(localStorage.getItem("orders")) || [];
+        const latestOrder = orders[orders.length - 1];
+
+        if (latestOrder) {
+          // Display order information
+          const orderInfo = document.getElementById("orderInfo");
+          orderInfo.innerHTML = `
+            <p><strong>Order Number:</strong> #${latestOrder.id}</p>
+            <p><strong>Order Date:</strong> ${new Date(
+              latestOrder.date
+            ).toLocaleDateString("en-US")}</p>
+            <p><strong>Payment Method:</strong> ${
+              latestOrder.paymentMethod === "creditCard"
+                ? "Credit Card"
+                : "Cash on Delivery"
+            }</p>
+            <p><strong>Total Amount:</strong> ${latestOrder.total}</p>
+          `;
+
+          // Display order items
+          const orderItems = document.getElementById("orderItems");
+          const products = JSON.parse(localStorage.getItem("products")) || {};
+
+          latestOrder.items.forEach((productId) => {
+            const product = products[productId];
+            if (product) {
+              const itemDiv = document.createElement("div");
+              itemDiv.className = "order-item";
+              itemDiv.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <div>
+                  <h6 class="mb-0">${product.name}</h6>
+                  <small class="text-muted">${product.price} SAR</small>
+                </div>
+              `;
+              orderItems.appendChild(itemDiv);
+            }
+          });
+        } else {
+          // No order found in localStorage
+          const orderInfo = document.getElementById("orderInfo");
+          const orderItems = document.getElementById("orderItems");
+          
+          orderInfo.innerHTML = `
+            <div class="alert alert-info">
+              <p>No order found in your browser's storage. This could be because:</p>
+              <ul>
+                <li>You're using a different device than the one you placed the order on</li>
+                <li>You've cleared your browser data</li>
+                <li>You haven't placed an order yet</li>
+              </ul>
+              <p>If you have an order number, you can enter it below to track your order:</p>
+              <div class="input-group mt-3">
+                <input type="text" class="form-control" id="orderNumberInput" placeholder="Enter your order number">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" id="trackOrderBtn">Track</button>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          orderItems.innerHTML = '';
+          
+          // Add event listener for the track button
+          document.getElementById('trackOrderBtn').addEventListener('click', function() {
+            const orderNumber = document.getElementById('orderNumberInput').value.trim();
+            if (orderNumber) {
+              // Here you would typically make an API call to your backend to get order details
+              // For now, we'll just show a message
+              orderInfo.innerHTML = `
+                <div class="alert alert-success">
+                  <p>Order #${orderNumber} is being processed.</p>
+                  <p>This is a demo message. In a real application, this would fetch order details from a server.</p>
+                </div>
+              `;
+            } else {
+              alert('Please enter a valid order number');
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
